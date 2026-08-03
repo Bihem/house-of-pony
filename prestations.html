@@ -27,23 +27,21 @@
 <body>
 <a href="#main" class="skip-link">Aller au contenu</a>
 
-<header class="nav on-light" id="siteNav">
+<header class="nav" id="siteNav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">House Of Pony</a>
-    <nav class="nav-links">
-      <a href="index.html">Accueil</a>
-      <a href="a-propos.html">À Propos</a>
-      <a href="prestations.html" class="active">Prestations</a>
-      <a href="galerie.html">Galerie</a>
-      <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="nav-cta">
-      <a href="reservation.html" class="btn btn-outline btn-sm">Réserver</a>
-      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
-    </div>
+    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <a href="index.html" class="nav-logo-stack">
+      <span class="l1">House Of Pony</span>
+      <span class="l2">Pantin</span>
+    </a>
+    <a href="reservation.html" class="nav-reserve">
+      <span class="r1">Réservation</span>
+      <span class="r2">En ligne</span>
+    </a>
   </div>
 </header>
+
+<div class="announce-bar">Tension contrôlée, zéro surchauffe — la santé du cheveu avant tout.</div>
 
 <div class="mobile-menu">
   <nav>
@@ -162,39 +160,26 @@
 </main>
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div>
-        <div class="footer-brand">House Of Pony</div>
-        <p class="footer-tag">Atelier de coiffure indépendant spécialisé dans les ponytails sculpturales et les quickwaves signature. Sur rendez-vous, à Pantin.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <a href="a-propos.html">À Propos</a>
-        <a href="prestations.html">Prestations</a>
-        <a href="galerie.html">Galerie</a>
-        <a href="faq.html">FAQ</a>
-      </div>
-      <div class="footer-col">
-        <h4>Atelier</h4>
-        <p>Pantin, Île-de-France</p>
-        <p>Adresse communiquée 24h avant le RDV</p>
-        <a href="reservation.html">Prendre rendez-vous</a>
-      </div>
-      <div class="footer-col">
-        <h4>Suivre</h4>
-        <a href="https://instagram.com/houseofpony_" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://tiktok.com/@houseofpony_" target="_blank" rel="noopener">TikTok</a>
-        <a href="contact.html">Contact</a>
-      </div>
+  <div class="container center">
+    <div class="footer-brand">House Of Pony</div>
+    <nav style="display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin:32px 0" aria-label="Navigation pied de page">
+      <a href="prestations.html">Prestations</a>
+      <a href="reservation.html">Réserver</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="social-strip center mt-s" style="justify-content:center">
+      <a href="https://instagram.com/houseofpony_" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://tiktok.com/@houseofpony_" target="_blank" rel="noopener">TikTok</a>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" style="justify-content:center; border-top:1px solid var(--line-inv); margin-top:40px">
       <span>&copy; <span data-year></span> House Of Pony. Tous droits réservés.</span>
-      <div class="footer-legal">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="cgv.html">CGV</a>
-        <a href="confidentialite.html">Confidentialité</a>
-      </div>
+    </div>
+    <div class="footer-legal" style="justify-content:center; margin-top:12px">
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="cgv.html">CGV</a>
+      <a href="confidentialite.html">Confidentialité</a>
     </div>
   </div>
 </footer>
