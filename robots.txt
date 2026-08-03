@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /reservation.html
+
+Sitemap: https://houseofpony.fr/sitemap.xml
