@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réserver — House Of Pony</title>
+<meta name="description" content="Réservez votre rendez-vous House Of Pony en ligne : choisissez votre prestation, votre date et votre heure, puis confirmez avec un acompte.">
+<link rel="canonical" href="https://houseofpony.fr/reservation.html">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22black%22/><text x=%2250%22 y=%2266%22 font-size=%2260%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22serif%22>P</text></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<style>
+  .bk-progress{ display:flex; gap:8px; margin-bottom:56px; }
+  .bk-progress span{ flex:1; height:2px; background:var(--line); position:relative; }
+  .bk-progress span::after{ content:''; position:absolute; inset:0; background:var(--black); transform:scaleX(0); transform-origin:left; transition:transform .4s var(--ease); }
+  .bk-progress span.done::after, .bk-progress span.active::after{ transform:scaleX(1); }
+  .bk-step{ display:none; }
+  .bk-step.active{ display:block; animation:bkIn .5s var(--ease); }
+  @keyframes bkIn{ from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:translateY(0)} }
+  .bk-service-opt{ border:1px solid var(--line); padding:24px; display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:-1px; cursor:pointer; transition:background .2s var(--ease); }
+  .bk-service-opt:hover{ background:var(--grey-l); }
+  .bk-service-opt.selected{ background:var(--black); color:var(--white); border-color:var(--black); position:relative; z-index:1; }
+  .bk-service-opt .name{ font-family:var(--serif); font-size:1.2rem; }
+  .bk-service-opt .meta{ font-size:12px; color:var(--grey-mid); margin-top:4px; }
+  .bk-service-opt.selected .meta{ color:rgba(255,255,255,.6); }
+  .bk-service-opt .price{ font-family:var(--serif); font-size:1.3rem; white-space:nowrap; }
+  .bk-cal-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; }
+  .bk-cal-head button{ width:40px; height:40px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; }
+  .bk-cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:8px; }
+  .bk-cal-grid .dow{ text-align:center; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey-mid); padding-bottom:8px; }
+  .bk-cal-grid button{ aspect-ratio:1; border:1px solid var(--line); font-size:14px; transition:background .2s var(--ease), color .2s var(--ease); }
+  .bk-cal-grid button:not(.disabled):hover{ background:var(--grey-l); }
+  .bk-cal-grid button.selected{ background:var(--black); color:var(--white); border-color:var(--black); }
+  .bk-cal-grid button.disabled{ opacity:.25; cursor:not-allowed; }
+  .bk-cal-grid button.empty{ border:none; }
+  .bk-time-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .bk-time-grid button{ padding:22px 10px; border:1px solid var(--line); font-size:15px; transition:background .2s var(--ease), color .2s var(--ease); }
+  .bk-time-grid button:hover{ background:var(--grey-l); }
+  .bk-time-grid button.selected{ background:var(--black); color:var(--white); border-color:var(--black); }
+  .bk-recap{ border:1px solid var(--line); padding:36px; }
+  .bk-recap-row{ display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid var(--line); font-size:14px; }
+  .bk-recap-row:last-child{ border-bottom:none; }
+  .bk-recap-row .l{ color:var(--grey-mid); }
+  .bk-recap-row .v{ font-family:var(--serif); font-size:1.05rem; }
+  .bk-confirm-icon{ width:56px; height:56px; border:1px solid var(--black); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 28px; }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Aller au contenu</a>
+
+<header class="nav on-light" id="siteNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">House Of Pony</a>
+    <nav class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="a-propos.html">À Propos</a>
+      <a href="prestations.html">Prestations</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="reservation.html" class="btn btn-outline btn-sm">Réserver</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu">
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="a-propos.html">À Propos</a>
+    <a href="prestations.html">Prestations</a>
+    <a href="galerie.html">Galerie</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="mm-foot"><span>Pantin</span><span>@houseofpony_</span></div>
+</div>
+
+<main id="main">
+  <section class="page-hero" style="border-bottom:none">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Accueil</a><span>/</span><span>Réservation</span></div>
+      <p class="eyebrow">Réservation</p>
+      <h1 class="h-xl mt-xs">Réserver votre rendez-vous.</h1>
+    </div>
+  </section>
+
+  <section style="padding:0 0 clamp(80px,12vw,140px)">
+    <div class="container">
+      <div class="booking-widget" style="max-width:760px;margin:0 auto">
+        <div class="bk-progress">
+          <span class="active"></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <!-- STEP 1 — SERVICE -->
+        <div class="bk-step active">
+          <p class="eyebrow">Étape 1 / 5</p>
+          <h2 class="h-md mt-xs">Choisissez votre prestation</h2>
+          <div class="mt-l">
+            <div class="bk-service-opt" data-bk-service="Ponytail Classique"><div><div class="name">Ponytail Classique</div><div class="meta">3h15</div></div><div class="price svc-price">35 €</div></div>
+            <div class="bk-service-opt" data-bk-service="Half Up Crown Twist"><div><div class="name">Half Up Crown Twist</div><div class="meta">3h30</div></div><div class="price svc-price">50 €</div></div>
+            <div class="bk-service-opt" data-bk-service="Bun x Frange"><div><div class="name">Bun x Frange</div><div class="meta">3h</div></div><div class="price svc-price">40 €</div></div>
+            <div class="bk-service-opt" data-bk-service="Ponylace"><div><div class="name">Ponylace</div><div class="meta">3h</div></div><div class="price svc-price">50 €</div></div>
+            <div class="bk-service-opt" data-bk-service="Demi-Tête (Quickwaves)"><div><div class="name">Demi-Tête (Quickwaves)</div><div class="meta">3h30</div></div><div class="price svc-price">40 €</div></div>
+            <div class="bk-service-opt" data-bk-service="Bun"><div><div class="name">Bun</div><div class="meta">3h</div></div><div class="price svc-price">35 €</div></div>
+            <div class="bk-service-opt" data-bk-service="Demi-Tête avec Frange"><div><div class="name">Demi-Tête avec Frange</div><div class="meta">3h30</div></div><div class="price svc-price">45 €</div></div>
+          </div>
+        </div>
+
+        <!-- STEP 2 — DATE -->
+        <div class="bk-step">
+          <p class="eyebrow">Étape 2 / 5</p>
+          <h2 class="h-md mt-xs">Choisissez une date</h2>
+          <div class="mt-l">
+            <div class="bk-cal-head">
+              <button data-bk-back aria-label="Retour"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <span class="h-md" style="font-size:1.1rem">Août 2026</span>
+              <span style="width:40px"></span>
+            </div>
+            <div class="bk-cal-grid">
+              <div class="dow">L</div><div class="dow">M</div><div class="dow">M</div><div class="dow">J</div><div class="dow">V</div><div class="dow">S</div><div class="dow">D</div>
+              <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+              <button class="disabled" disabled>4</button><button data-bk-date="Mer. 5 août">5</button><button data-bk-date="Jeu. 6 août">6</button><button data-bk-date="Ven. 7 août">7</button>
+              <button data-bk-date="Sam. 8 août">8</button><button class="disabled" disabled>9</button><button data-bk-date="Lun. 10 août">10</button><button data-bk-date="Mar. 11 août">11</button><button data-bk-date="Mer. 12 août">12</button><button data-bk-date="Jeu. 13 août">13</button><button data-bk-date="Ven. 14 août">14</button>
+              <button data-bk-date="Sam. 15 août">15</button><button class="disabled" disabled>16</button><button data-bk-date="Lun. 17 août">17</button><button data-bk-date="Mar. 18 août">18</button><button class="disabled" disabled>19</button><button data-bk-date="Jeu. 20 août">20</button><button data-bk-date="Ven. 21 août">21</button>
+              <button data-bk-date="Sam. 22 août">22</button><button class="disabled" disabled>23</button><button data-bk-date="Lun. 24 août">24</button><button data-bk-date="Mar. 25 août">25</button><button data-bk-date="Mer. 26 août">26</button><button data-bk-date="Jeu. 27 août">27</button><button data-bk-date="Ven. 28 août">28</button>
+              <button data-bk-date="Sam. 29 août">29</button><button class="disabled" disabled>30</button><button data-bk-date="Lun. 31 août">31</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3 — TIME -->
+        <div class="bk-step">
+          <p class="eyebrow">Étape 3 / 5</p>
+          <h2 class="h-md mt-xs">Choisissez un horaire</h2>
+          <div class="mt-l">
+            <div class="bk-time-grid">
+              <button data-bk-time="09:00">09:00</button>
+              <button data-bk-time="13:00">13:00</button>
+              <button data-bk-time="16:00">16:00</button>
+            </div>
+          </div>
+          <button data-bk-back class="link-arrow mt-l" style="border:none;padding:0">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="transform:rotate(180deg)"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            Retour
+          </button>
+        </div>
+
+        <!-- STEP 4 — RECAP / DEPOSIT -->
+        <div class="bk-step">
+          <p class="eyebrow">Étape 4 / 5</p>
+          <h2 class="h-md mt-xs">Confirmez votre demande</h2>
+          <div class="bk-recap mt-l">
+            <div class="bk-recap-row"><span class="l">Prestation</span><span class="v bk-recap-service">—</span></div>
+            <div class="bk-recap-row"><span class="l">Date</span><span class="v bk-recap-date">—</span></div>
+            <div class="bk-recap-row"><span class="l">Heure</span><span class="v bk-recap-time">—</span></div>
+            <div class="bk-recap-row"><span class="l">Tarif</span><span class="v bk-recap-price">—</span></div>
+          </div>
+          <p class="form-note">Un acompte vous sera demandé pour confirmer définitivement le créneau. House Of Pony revient vers vous sous 24 à 48h avec les modalités de paiement et l'adresse de l'atelier (communiquée 24h avant le rendez-vous).</p>
+          <div style="display:flex; gap:16px; margin-top:28px">
+            <button data-bk-back class="btn btn-outline">Retour</button>
+            <button data-bk-confirm class="btn btn-primary btn-full">Envoyer ma demande de réservation</button>
+          </div>
+        </div>
+
+        <!-- STEP 5 — CONFIRMATION -->
+        <div class="bk-step">
+          <div class="center">
+            <div class="bk-confirm-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <p class="eyebrow">Demande envoyée</p>
+            <h2 class="h-lg mt-xs">Merci — votre demande est bien reçue.</h2>
+            <p class="lede mt-m" style="max-width:52ch;margin-left:auto;margin-right:auto">House Of Pony vous recontacte sous 24 à 48h pour confirmer votre créneau et finaliser l'acompte de réservation.</p>
+            <div class="bk-recap mt-l" style="text-align:left">
+              <div class="bk-recap-row"><span class="l">Prestation</span><span class="v bk-recap-service">—</span></div>
+              <div class="bk-recap-row"><span class="l">Date</span><span class="v bk-recap-date">—</span></div>
+              <div class="bk-recap-row"><span class="l">Heure</span><span class="v bk-recap-time">—</span></div>
+            </div>
+            <a href="index.html" class="btn btn-outline mt-l">Retour à l'accueil</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:1px solid var(--line-inv); padding-top:28px">
+      <span>&copy; <span data-year></span> House Of Pony. Tous droits réservés.</span>
+      <div class="footer-legal">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="cgv.html">CGV</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
